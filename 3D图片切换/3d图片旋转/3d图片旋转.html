@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图片旋转</title>
+  <style id="css">
+    body, ul, ol{
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .box {
+      width: 800px;
+      margin: 50px auto;
+    }
+
+    .picList {
+      background: chocolate;
+      width: 800px;
+      height: 360px;
+      perspective: 800px;
+    }
+
+    .picList li {
+      background: cornflowerblue;
+      width: 25px;
+      height: 360px;
+      float: left;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: translateZ(-180px);
+    }
+
+    .picList a {
+      background: cornsilk;
+      width: 100%;
+      height: 360px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .picList span {
+      background: cyan;
+      width: 100%;
+      height: 360px;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .picList li a:nth-of-type(1){
+      background: hsl(140, 88%, 84%);
+      transform: translateZ(180px);
+    }
+    .picList li a:nth-of-type(2){
+      background: hsl(140, 64%, 65%);
+      transform-origin: top;
+      transform: translateZ(-180px) rotateX(90deg);
+    }
+    .picList li a:nth-of-type(3){
+      background: hsl(140, 54%, 37%);
+      transform: translateZ(-180px) rotateX(180deg) ;
+    }
+    .picList li a:nth-of-type(4){
+      background: hsl(141, 70%, 11%);
+      transform-origin: bottom;
+      transform: translateZ(-180px) rotateX(-90deg);
+    }
+
+    .picList li span:nth-of-type(1){
+      left: 0;
+      transform-origin: left;
+      transform: translateZ(180px) rotateY(90deg);
+    }
+
+    .picList li span:nth-of-type(2){
+      right: 0;
+      transform-origin: right;
+      transform: translateZ(180px) rotateY(-90deg);
+    }
+
+    #btn {
+      padding: 50px;
+      height: 30px;
+    }
+
+    #btn li {
+      width: 30px;
+      height: 30px;
+      background: black;
+      color: #fff;
+      font: bond 16px/30px Arial;
+      text-align: center;
+      float: left;
+      margin: 0 10px;
+      border-radius: 50%;
+    }
+
+    #btn .active {
+      background: #f60;
+    }
+
+  </style>
+  <script>
+    window.onload = function(){
+      const oPic = document.getElementById("pic");
+      const oCss = document.getElementById("css");
+      const aBtn = document.getElementById("btn").getElementsByTagName("li");
+      
+      const iLiW = 25;
+      const iLength = oPic.clientWidth/iLiW;
+      let aLi = [];
+  
+      let sHtml = "";
+      let sCss = "";
+      let iZindex = 0;
+      let iNow = 0;
+
+      for(let i=0; i<iLength; i++){
+        i > iLength/2 ? iZindex-- : iZindex++;
+        sCss += ".picList li:nth-of-type("+(i+1)+"){z-index:"+iZindex+";}.picList li:nth-of-type("+(i+1)+") a{background-position:-"+i*iLiW+"px 0px;}"
+      }
+
+      oCss.innerHTML+=sCss;
+      for(let i=0;i<iLength;i++){
+        sHtml+='<li><a href="#"></a><a href="#"></a><a href="#"></a><a href="#"></a><span></span><span></span></li>';
+      }
+
+      oPic.innerHTML=sHtml;
+	    aLi=oPic.getElementsByTagName("li");
+      for(let i=0;i<aBtn.length;i++){
+        aBtn[i].onclick=(function(a){
+          return function()
+          {
+            aBtn[iNow].className="";
+            for(var i=0;i<aLi.length;i++)
+            {
+              aLi[i].style.transition=Math.abs(a-iNow)*0.5+"s "+i*80+"ms all ease";
+              aLi[i].style.transform="translateZ(-180px) rotateX(-"+a*90+"deg)";
+            }
+            iNow=a;
+            aBtn[iNow].className="active";
+          };
+        })(i);
+      }
+    }
+  </script>
+</head>
+<body>
+  <div class="box">
+    <ul class="picList" id="pic">
+      <!-- <li>
+        <a></a>
+        <a></a>
+        <a></a>
+        <a></a>
+        <span></span>
+        <span></span>
+      </li> -->
+    </ul>
+    <ol id="btn">
+      <li class="active">1</li>
+      <li>2</li>
+      <li>3</li>
+      <li>4</li>
+    </ol>
+  </div>
+</body>
+</html>

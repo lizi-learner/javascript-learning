@@ -1,0 +1,33 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.img-wrapper {
+  margin: 200px auto;
+  width: 800px;
+  height: 300px;
+  border: 10px solid #ffccff;
+  box-shadow: 0 8px 10px 0px rgba(0, 0, 0, 0.3),
+              0 0px 10px 0px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  position: relative;
+
+  text-align: center;
+}
+
+[data-img] {
+  vertical-align: bottom;
+  width: 80%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: left 0.6s ease-in-out;
+
+  box-shadow: 3px 0 6px 6px rgba(0, 0, 0, 0.6);
+}

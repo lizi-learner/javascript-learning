@@ -1,0 +1,64 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  list-style: none;
+}
+
+.img-wrapper {
+  margin: 200px auto;
+  width: 600px;
+  height: 300px;
+  border: 10px solid #ffccff;
+  box-shadow: 0 8px 10px 0px rgba(0, 0, 0, 0.3),
+              0 0px 10px 0px rgba(0, 0, 0, 0.3);
+  /* background: linear-gradient(45deg, #ffccff, #ccffff); */
+  overflow: hidden;
+
+  text-align: center;
+  position: relative;
+}
+
+[data-img] {
+  width: 100%;
+  vertical-align: bottom;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: opacity 1s;
+  opacity: 0;
+}
+
+.img-wrapper .change-img{
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+
+  z-index: 100;
+}
+
+.change-img-btn {
+  float: left;
+  /* padding: 10px; */
+  width: 30px;
+  line-height: 30px;
+  margin: 0 5px;
+  background: white;
+  border-radius: 5px;
+}
+
+.change-img-btn:hover {
+  cursor: pointer;
+}
+
+/* 设置类以改变图片的摆放和样式 */
+.active-img {
+  z-index: 1;
+  opacity: 1;
+}
+
+.active-btn {
+  background-color: #ffccff;
+}

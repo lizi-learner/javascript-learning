@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>彩色立方体</title>
+  <style>
+
+    .view3d {
+      perspective: 800px;
+    }
+
+    .wrapper {
+      height: 200px;
+      width: 200px;
+      margin: 200px auto;
+      position: relative;
+      transform-style: preserve-3d;
+      
+      animation-duration: 5s;
+      animation-name: cube-rotate;
+      animation-iteration-count: infinite;
+    }
+
+    .wrapper div {
+      width: 200px;
+      height: 200px;
+      opacity: 0.5;
+      position: absolute;
+
+      /*设置字体样式，便于显示方块摆放位置*/
+      font-size: 60px;
+      color: white;
+      text-align: center;
+      line-height: 200px;
+    }
+
+    .wrapper div:nth-child(1){
+      background: red;
+      transform: rotateY(-90deg) translateZ(-100px) ;
+    }
+    .wrapper div:nth-child(2){
+      background: yellow;
+      transform: rotateY(-90deg) translateZ(100px);
+    }
+    .wrapper div:nth-child(3){
+      background: green;
+      transform: translateZ(100px);
+    }
+    .wrapper div:nth-child(4){
+      background: blue;
+      transform: translateZ(-100px);
+    }
+    .wrapper div:nth-child(5){
+      background: pink;
+      transform-origin: top;
+      transform: translateZ(100px) rotateX(-90deg); 
+    }
+    .wrapper div:nth-child(6){
+      background: firebrick;
+      transform-origin: bottom;
+      transform: translateZ(100px) rotateX(90deg);
+    }
+
+    @keyframes cube-rotate {
+      100%{
+        transform: rotateX(360deg) rotateY(360deg);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="view3d">
+    <div class="wrapper">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+      <div>5</div>
+      <div>6</div>
+    </div>
+  </div>
+
+</body>
+</html>
