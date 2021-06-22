@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    .wrapper {
+      margin: 200px auto;
+      width: 300px;
+    }
+
+    .search {
+      display: block;
+      box-sizing: border-box;
+      width: 100%;
+      border: 1px solid #ccc;
+      padding: 5px 15px;
+      height: 50px;
+
+
+      outline: none;
+      font-size: 18px;
+    }
+
+    .search-history {
+      list-style: none;
+      
+    }
+
+    .search-history li {
+      border: 1px solid #ccc;
+      /* transform: translateY(-1px); */
+      border-top: none;
+      padding: 5px 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <input type="text" class="search" placeholder="请输入关键字">
+    <ul class="search-history">
+    </ul>
+  </div>
+
+  <script>
+    function getWords(){
+      //保存上一次的搜索词，使用localStorage
+      localStorage.setItem('search', this.value);
+      if(this.value){
+        const oScript = document.createElement('script');
+      
+        //jsonp跨源获取百度的数据,show是我们定义的回调函数，数据返回时会执行。
+        oScript.src = 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su?wd=' + this.value + '&cb=show';
+        document.body.append(oScript);
+        //这个脚本只是为了获取数据，可以去掉
+        oScript.remove();
+      }else{
+        list.innerHTML = "";
+      }
+    }
+
+    function show(data){
+      console.log(data.s);
+      list.innerHTML = data.s.map(word => `<li><a href ="https://www.baidu.com/s?wd=${word}">${word}</a></li>`)
+                             .join("");
+    }
+
+    search = document.querySelector('.search');
+    list = document.querySelector('.search-history');
+    
+    //展示上一次的搜索词
+    search.value = localStorage.getItem('search');
+
+    //keyup事件实时获取输入框的内容
+    search.addEventListener('keyup', getWords);
+    search.addEventListener('focus', getWords);
+
+  </script>
+</body>
+</html>
