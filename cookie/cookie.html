@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="text" id="username">
+  <input type="button" id="login" value="登录">
+  <input type="button" id="del" value="删除">
+</body>
+<script>
+  function getCookie(key){
+    let arr1 = document.cookie.split("; ");
+    for(let i=0; i<arr1.length; i++){
+      let arr2 = arr1[i].split("=");
+      if(arr2[0] == key){
+        return decodeURI(arr2[1]);
+      }
+    }
+  }
+
+  function setCookie(key, value, time){
+    let oTime = new Date();
+    oTime.setDate(oTime.getDate() + time);
+    //设置cookie和保存时间
+    document.cookie = `${key}=${value}; expires=${oTime.toGMTString()}`;
+  }
+
+  //删除cookie
+  function removeCookie(key){
+    setCookie(key,'',-1);
+  }
+
+  const username = document.querySelector("#username");
+  const login = document.querySelector("#login");
+  const del = document.querySelector("#del");
+
+  login.addEventListener('click', ()=>{
+    let name = getCookie("username");
+    if(name){
+      alert("登陆成功");
+    }else{
+      name = prompt("请输入你的名字：", "");
+      if(name){
+        setCookie("username" , name, 100);
+      }
+    }
+  })
+
+  del.addEventListener('click', ()=>{
+    removeCookie("username");
+  })
+
+</script>
+</html>
