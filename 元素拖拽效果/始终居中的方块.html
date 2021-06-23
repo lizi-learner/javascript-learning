@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>始终居中的方块</title>
+  <style>
+    #fixed {
+      width: 200px;
+      height: 200px;
+      background: linear-gradient(45deg, #ffccff, #ccffff);
+      position: absolute;
+    }
+  </style>
+
+</head>
+<body style="height:2000px;">
+  <div id="fixed"></div>
+  <script>
+
+    function rerangeDiv(){
+      let left = (document.documentElement.clientWidth - div.offsetWidth)/2 + window.pageXOffset + 'px';
+      let top = (document.documentElement.clientHeight - div.offsetHeight)/2 + window.pageYOffset + 'px';
+
+      div.style.left = left;
+      div.style.top = top;
+    }
+
+    let div = document.querySelector('#fixed');
+    window.addEventListener('resize', rerangeDiv);
+    window.addEventListener('scroll', rerangeDiv);
+    rerangeDiv()
+
+  </script>
+</body>
+</html>

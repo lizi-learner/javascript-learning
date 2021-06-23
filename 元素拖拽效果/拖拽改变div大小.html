@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #mydiv {
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(45deg, #ffccff, #ccffff);
+      position: absolute;
+    }
+  </style>
+</head>
+<body>
+  <div id="mydiv"></div>
+  <script>
+    function toggle(e){
+      flag = !flag;
+      if(flag){
+        //记录初始鼠标位置
+        prevx = e.clientX - mydiv.clientWidth;
+        prevy = e.clientY - mydiv.clientHeight;
+      }
+    }
+
+    function resize(e){
+      //计算变化量
+      if(flag){
+        let nWidth = e.clientX - prevx;
+        let nHeight = e.clientY - prevy;
+        //设置能拖拽的最大值和最小值
+        if(nWidth < maxSize.x && nWidth > minSize.x){
+          mydiv.style.width = nWidth + 'px';
+        }else{
+          flag = false;
+        }
+        if(nHeight < maxSize.y && nHeight > minSize.y){
+          flag = true;
+          mydiv.style.height = nHeight + 'px';
+        }else{
+          flag = false;
+        }
+      }
+    }
+
+    let flag = false;
+    let prevx = 0;
+    let prevy = 0;
+    let maxSize = {x: 600, y: 600};
+    let minSize = {x: 100, y: 100};
+
+    const mydiv = document.querySelector('#mydiv');
+    mydiv.addEventListener('mousedown', toggle);
+    mydiv.addEventListener('mouseup', toggle);
+    window.addEventListener('mousemove', resize);
+  </script>
+</body>
+</html>
