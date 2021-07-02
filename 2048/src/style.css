@@ -1,0 +1,121 @@
+#container {
+  position: relative;
+  margin: 100px auto;
+  
+}
+
+.uiPanel {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  color: #666;
+  height: 32px;
+}
+
+.newGame {
+  background-color: #8f7d6b;
+  border-radius: 5px;
+  color: white;
+  padding: 5px;
+
+  float: right;
+  cursor: pointer;
+}
+
+.score {
+  padding: 5px;
+  background-color: #8f7d6b;
+  color: white;
+  border-radius: 5px;
+}
+
+.mainPanel {
+  position: relative;
+}
+
+
+.num-box {
+  text-align: center;
+  z-index: 1;
+  transition: all 2s ease-in-out;
+}
+
+.num-2 {
+  color: #776e65;
+  background-color: #eee4da;
+  font-size: 65px
+}
+
+.num-4 {
+  color: #776e65;
+  background-color: #ede0c8;
+  font-size: 65px
+}
+
+.num-8 {
+  color: #f9f6f2;
+  background-color: #f2b179;
+  font-size: 55px
+}
+
+.num-16 {
+  color: #f9f6f2;
+  background-color: #f59563;
+  font-size: 55px
+}
+
+.num-32 {
+  color: #f9f6f2;
+  background-color: #f67c5f;
+  font-size: 55px
+}
+
+.num-64 {
+  color: #f9f6f2;
+  background-color: #f65e3b;
+  font-size: 55px
+}
+
+.num-128 {
+  color: #f9f6f2;
+  background-color: #edcf72;
+  font-size: 45px
+}
+
+.num-256 {
+  color: #f9f6f2;
+  background-color: #edcc61;
+  font-size: 45px
+}
+
+.num-512 {
+  color: #f9f6f2;
+  background-color: #edc850;
+  font-size: 45px
+}
+
+.num-1024 {
+  color: #f9f6f2;
+  background-color: #abe358;
+  font-size: 35px
+}
+
+.num-2048 {
+  color: #f9f6f2;
+  background-color: #4dd9cf;
+  font-size: 35px
+}
+
+.num-4096 {
+  color: #f9f6f2;
+  background-color: #a283f9;
+  font-size: 35px
+}
+
+.num-8192 {
+  color: #f9f6f2;
+  background-color: #f98383;
+  font-size: 35px
+}
+
+
